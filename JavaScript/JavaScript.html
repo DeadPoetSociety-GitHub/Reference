@@ -1,0 +1,252 @@
+<!-- 페이지가 로드 되면-->
+window.addEventListener('DOMContentLoaded', function() {
+
+});
+
+<!-- DOM 가져오기, 클릭 이벤트-->
+let abc = document.getElementById("idName");
+abc.addEventListener("click". function() {
+
+});
+
+<!-- 일정시간 입력없으면 페이지 이동 -->
+<script>
+  let time = new Date().getTime();
+  $(document.body).bind("mousemove keypress", function(e) {
+    time = new Date().getTime();
+  });
+  
+  function refresh() {
+    if(new Date().getTime() - time >= 60000) {
+      location.replace('http://neutinamu.org/page/s9/s2.php');
+    } else {
+    setTimeout(refresh, 5000);
+    }
+  }
+  setTimeout(refresh, 5000);
+</script>
+
+<!-- 오디오파일 재생 -->
+<script>
+	let audio = new Audio('audio/noreturn.mp3');
+	audio.volume = 1;
+	audio.play();
+</script>
+
+<!-- 커서를 따라 마우스오버 -->
+<style>
+	.btn1, .btn2 {
+		position: relative;
+		display: inline-flex;
+		padding: 30px 30px;
+		overflow: hidden;
+		background: #C9C4B4;
+		text-align:center;
+		font-size:22px;
+		line-height:50px;
+		cursor:pointer;
+		box-shadow: -3px -3px 7px #fffdfdcc,
+								3px 3px 5px rgba(94, 104, 121, 0.342);
+	}
+	.btn1 span, .btn2 span {
+    position: relative;
+    z-index: 1;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  .btn1::before, .btn2::before {
+    content: '';
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: #078238;
+    transition: width 0.5s, height 0.5s;
+  }
+  .btn1:hover::before, .btn2:hover::before {
+    width: 25em;
+    height: 25em;
+  }
+</style>
+
+<section>
+	<a href="#" class="btn1"><span>회원가입은 처음이에요</span></a>
+	<a href="#" class="btn2"><span>대출카드는 있어요</span></a>
+</section>
+
+<script>
+  const btn1 = document.querySelector('.btn1');
+  btn1.onmousemove = function(e){
+    const x = e.pageX - btn1.offsetLeft;
+    const y = e.pageY - btn1.offsetTop;
+
+    btn1.style.setProperty('--x', x + 'px');
+    btn1.style.setProperty('--y', y + 'px');
+  }
+  const btn2 = document.querySelector('.btn2');
+  btn2.onmousemove = function(e){
+    const x = e.pageX - btn2.offsetLeft;
+    const y = e.pageY - btn2.offsetTop;
+
+    btn2.style.setProperty('--x', x + 'px');
+    btn2.style.setProperty('--y', y + 'px');
+  }
+</script>
+
+<!-- 클릭 시 뒤로가기 -->
+
+<script>
+	const backBtn = document.querySelector('.back-btn');
+		backBtn.addEventListener('click', event => {
+			history.back();
+		});
+</script>
+
+<!-- 버튼 2개, 마우스 오버 시 마우스 포인터 따라가기 -->
+
+<main>
+  <section class="sub-main">
+    <a href="s2-join.php" class="btn1"><span>홈페이지&대출<br>회원으로<br>가입합니다.</span></a>
+    <a href="s2-join-only.php" class="btn2"><span>홈페이지<br>회원으로<br>가입합니다.</span></a>
+  </section>
+</main>
+
+<style>
+  .sub-main {
+    display: flex;
+    margin: 10em 0 0 0;
+  }
+  .btn1, .btn2 {
+    position: relative;
+    display: inline-flex;
+    padding: 30px 30px;
+    overflow: hidden;
+    background: #C9C4B4;
+    text-align:center;
+    font-size:22px;
+    line-height:50px;
+    cursor:pointer;
+    box-shadow: -3px -3px 7px #fffdfdcc,
+                3px 3px 5px rgba(94, 104, 121, 0.342);
+
+  }
+  .btn1 span, .btn2 span {
+    position: relative;
+    z-index: 1;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  .btn1::before, .btn2::before {
+    content: '';
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: #078238;
+    transition: width 0.5s, height 0.5s;
+  }
+  .btn1:hover::before, .btn2:hover::before {
+    width: 25em;
+    height: 25em;
+  }
+  main a {
+    margin: 0 1em 0 1em;
+  }
+</style>
+
+<script>
+  const btn1 = document.querySelector('.btn1');
+  btn1.onmousemove = function(e){
+    const x = e.pageX - btn1.offsetLeft;
+    const y = e.pageY - btn1.offsetTop;
+
+    btn1.style.setProperty('--x', x + 'px');
+    btn1.style.setProperty('--y', y + 'px');
+  }
+  const btn2 = document.querySelector('.btn2');
+  btn2.onmousemove = function(e){
+    const x = e.pageX - btn2.offsetLeft;
+    const y = e.pageY - btn2.offsetTop;
+
+    btn2.style.setProperty('--x', x + 'px');
+    btn2.style.setProperty('--y', y + 'px');
+  }
+  const backBtn = document.querySelector('.back-btn');
+  backBtn.addEventListener('click', event => {
+    history.back();
+  });
+</script>
+
+<!-- 더 보기 -->
+
+<li id="moreContent">책 소개</li>
+<li style="font-weight: 400;"><button id="moreDescription">더 보기</button></li>
+<li style="font-weight: 400;"><button id="lessDescription">접기</button></li>
+
+<style>
+#moreDescription, #lessDescription {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#ffffff;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-size:12px;
+	padding:6px 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+#moreDescription, #lessDescription:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+#moreDescription, #lessDescription:active {
+	position:relative;
+	top:1px;
+}
+.closed {
+	display: none !important;
+}
+.block {
+	display: block !important;
+}
+</style>
+
+<script>
+var content_txt = $("#moreContent").text();
+var content_txt_short = content_txt.substring(0,100)+"...";
+var btn_more = document.getElementById("moreDescription");
+var btn_less = document.getElementById("lessDescription");
+
+if(content_txt.length >= 100) {
+	$("#moreContent").html(content_txt_short);
+		btn_more.className += 'block';
+		btn_less.className += 'closed';
+} else {
+	$("#moreContent").html(content_txt);
+	btn_more.className += 'closed';
+	btn_less.className += 'closed';
+}
+btn_more.addEventListener("click", function(){
+	$("#moreContent").html(content_txt);
+	btn_more.classList.remove('block');
+	btn_more.className += 'closed';
+	btn_less.classList.remove('closed');
+	btn_less.className += 'block';
+});
+btn_less.addEventListener("click", function(){
+	$("#moreContent").html(content_txt_short);
+	btn_less.classList.remove('block');
+	btn_less.className += 'closed';
+	btn_more.classList.remove('closed');
+	btn_more.className += 'block';
+});
+</script>

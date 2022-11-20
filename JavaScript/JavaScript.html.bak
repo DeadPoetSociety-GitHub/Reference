@@ -1,0 +1,178 @@
+<!-- 페이지가 로드 되면-->
+window.addEventListener('DOMContentLoaded', function() {
+
+});
+
+<!-- 일정시간 입력없으면 페이지 이동 -->
+<script>
+  let time = new Date().getTime();
+  $(document.body).bind("mousemove keypress", function(e) {
+    time = new Date().getTime();
+  });
+  
+  function refresh() {
+    if(new Date().getTime() - time >= 60000) {
+      location.replace('http://neutinamu.org/page/s9/s2.php');
+    } else {
+    setTimeout(refresh, 5000);
+    }
+  }
+  setTimeout(refresh, 5000);
+</script>
+
+<!-- 오디오파일 재생 -->
+<script>
+	let audio = new Audio('audio/noreturn.mp3');
+	audio.volume = 1;
+	audio.play();
+</script>
+
+<!-- 커서를 따라 마우스오버 -->
+<style>
+	.btn1, .btn2 {
+		position: relative;
+		display: inline-flex;
+		padding: 30px 30px;
+		overflow: hidden;
+		background: #C9C4B4;
+		text-align:center;
+		font-size:22px;
+		line-height:50px;
+		cursor:pointer;
+		box-shadow: -3px -3px 7px #fffdfdcc,
+								3px 3px 5px rgba(94, 104, 121, 0.342);
+	}
+	.btn1 span, .btn2 span {
+    position: relative;
+    z-index: 1;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  .btn1::before, .btn2::before {
+    content: '';
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: #078238;
+    transition: width 0.5s, height 0.5s;
+  }
+  .btn1:hover::before, .btn2:hover::before {
+    width: 25em;
+    height: 25em;
+  }
+</style>
+
+<section>
+	<a href="#" class="btn1"><span>회원가입은 처음이에요</span></a>
+	<a href="#" class="btn2"><span>대출카드는 있어요</span></a>
+</section>
+
+<script>
+  const btn1 = document.querySelector('.btn1');
+  btn1.onmousemove = function(e){
+    const x = e.pageX - btn1.offsetLeft;
+    const y = e.pageY - btn1.offsetTop;
+
+    btn1.style.setProperty('--x', x + 'px');
+    btn1.style.setProperty('--y', y + 'px');
+  }
+  const btn2 = document.querySelector('.btn2');
+  btn2.onmousemove = function(e){
+    const x = e.pageX - btn2.offsetLeft;
+    const y = e.pageY - btn2.offsetTop;
+
+    btn2.style.setProperty('--x', x + 'px');
+    btn2.style.setProperty('--y', y + 'px');
+  }
+</script>
+
+<!-- 클릭 시 뒤로가기 -->
+
+<script>
+	const backBtn = document.querySelector('.back-btn');
+		backBtn.addEventListener('click', event => {
+			history.back();
+		});
+</script>
+
+<!-- 버튼 2개, 마우스 오버 시 마우스 포인터 따라가기 -->
+
+<main>
+  <section class="sub-main">
+    <a href="s2-join.php" class="btn1"><span>홈페이지&대출<br>회원으로<br>가입합니다.</span></a>
+    <a href="s2-join-only.php" class="btn2"><span>홈페이지<br>회원으로<br>가입합니다.</span></a>
+  </section>
+</main>
+
+<style>
+  .sub-main {
+    display: flex;
+    margin: 10em 0 0 0;
+  }
+  .btn1, .btn2 {
+    position: relative;
+    display: inline-flex;
+    padding: 30px 30px;
+    overflow: hidden;
+    background: #C9C4B4;
+    text-align:center;
+    font-size:22px;
+    line-height:50px;
+    cursor:pointer;
+    box-shadow: -3px -3px 7px #fffdfdcc,
+                3px 3px 5px rgba(94, 104, 121, 0.342);
+
+  }
+  .btn1 span, .btn2 span {
+    position: relative;
+    z-index: 1;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+  .btn1::before, .btn2::before {
+    content: '';
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: #078238;
+    transition: width 0.5s, height 0.5s;
+  }
+  .btn1:hover::before, .btn2:hover::before {
+    width: 25em;
+    height: 25em;
+  }
+  main a {
+    margin: 0 1em 0 1em;
+  }
+</style>
+
+<script>
+  const btn1 = document.querySelector('.btn1');
+  btn1.onmousemove = function(e){
+    const x = e.pageX - btn1.offsetLeft;
+    const y = e.pageY - btn1.offsetTop;
+
+    btn1.style.setProperty('--x', x + 'px');
+    btn1.style.setProperty('--y', y + 'px');
+  }
+  const btn2 = document.querySelector('.btn2');
+  btn2.onmousemove = function(e){
+    const x = e.pageX - btn2.offsetLeft;
+    const y = e.pageY - btn2.offsetTop;
+
+    btn2.style.setProperty('--x', x + 'px');
+    btn2.style.setProperty('--y', y + 'px');
+  }
+  const backBtn = document.querySelector('.back-btn');
+  backBtn.addEventListener('click', event => {
+    history.back();
+  });
+</script>

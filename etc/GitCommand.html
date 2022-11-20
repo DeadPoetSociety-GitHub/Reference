@@ -1,0 +1,29 @@
+<!-- GIT 설치 후 사용자 정보 등록 -->
+c:\Project>git config --global user.name "Josee"
+c:\Project>git config --global user.email josee@gmail.com
+
+<!-- GIT 저장소 생성 -->
+c:\Project>md mydirectory
+c:\Project>mydirectory>git init
+GitHub에 저장소 만들기
+c:\Project\mydirectory>git remote add origin 저장소주소
+
+<!-- 원격저장소와 로컬저장소 일치 -->
+c:\Project>git fetch --prune origin
+c:\Project>git reset --hard origin/master
+c:\Project>git clean
+
+<!-- GIT 예외 파일 설정 -->
+c:\Project\mydirectory>touch .gitignore // 파일 생성
+c:\Project\mydirectory>echo "a.js" > .gitignore // a.js라는 텍스트를 입력해서 파일 생성
+c:\Project\mydirectory>echo "b.js" > .gitignore // b.js라는 텍스트로 오바라이드
+c:\Project\mydirectory>echo "b.js" >> .gitignore // b.js라는 텍스트를 추가
+한 번 add된 파일은 ignore에 추가해도 예외 인정되지 않음
+
+<!-- 원격 저장소에 올리기 -->
+c:\Project\mydirectory>git add a.js
+c:\Project\mydirectory>git commit
+c:\Project\mydirectory>git push origin master
+
+<!-- 파일 만들기(Window) -->
+echo "111" > name.txt

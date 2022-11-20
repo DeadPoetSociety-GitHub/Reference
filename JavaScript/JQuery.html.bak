@@ -1,0 +1,128 @@
+
+<!-- 버튼 클릭 시 DOM요소 추가 -->
+<input type="number" class="form-control" name="phone" id="phone" placeholder="ex) 01012345678" required>
+<input type="button" class="form-control" value='가족회원 추가' onclick='detailPrc()'>
+<div id='DetailDiv'></div>
+
+<script>
+let i = 0;
+function detailPrc() {
+  ++i;
+  let phone = $('#phone').val();
+  let msg = '';
+  msg += "<input type='number' class='form-control' name='family_phone"+detaili+"' value='"+phone+"'>";
+  $("#DetailDiv").append(msg);
+}
+</script>
+
+<!-- 태그입력 / 스페이스나 enter로 입력 -->
+<input type="text" class="rt_input_txt form-control" style="width: 90%" id="tag" />
+<span>
+  <ul id="tag-list">
+  </ul>
+</span>
+
+<style>
+	.del-btn {
+			font-size: 14px;
+			font-weight: bold;
+			cursor: pointer;
+			margin-left: 8px;
+	}
+  #tag-list li {
+			display: inline-block;
+			margin: 0 3px;
+			font-size: 14px;
+			letter-spacing: -.5px;
+	}
+	#tag-list li.tag-item {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background:linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color:#ffffff;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+	}
+</style>
+
+<script>
+  var tag = {};
+  var counter = 0;
+
+  // 태그 추가
+  function addTag (value) {
+    tag[counter] = value; // 태그를 Object 안에 추가
+    counter++; // counter 증가 삭제를 위한 del-btn 의 고유 id 가 된다.
+  }
+
+  // 최종적으로 서버에 넘길때 tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
+  function marginTag () {
+    return Object.values(tag).filter(function (word) {
+      return word !== "";
+    });
+  }
+
+  $("#tag").on("keypress", function (e) {
+    var self = $(this);
+
+    // input 에 focus 되있을 때 엔터 및 스페이스바 입력시 구동
+    if (e.key === "Enter" || e.keyCode == 32) {
+      var tagValue = self.val(); // 값 가져오기
+
+      // 값이 없으면 동작 ㄴㄴ
+      if (tagValue !== "") {
+        // 같은 태그가 있는지 검사한다. 있다면 해당값이 array 로 return 된다.
+        var result = Object.values(tag).filter(function (word) {
+          return word === tagValue;
+        })
+        // 태그 중복 검사
+        if (result.length == 0) { 
+          $("#tag-list").append("<li class='tag-item'>"+tagValue+"<span class='del-btn' idx='"+counter+"'>x</span></li>");
+          addTag(tagValue);
+          self.val("");
+        } else {
+          alert("태그값이 중복됩니다.");
+        }
+      }
+      e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+        }
+    });
+    // 삭제 버튼은 비동기적 생성이므로 document 최초 생성시가 아닌 검색을 통해 이벤트를 구현시킨다.
+    $(document).on("click", ".del-btn", function (e) {
+        var index = $(this).attr("idx");
+        tag[index] = "";
+        $(this).parent().remove();
+    });
+</script>
+
+<!-- AJAX -->
+<label for="exampleFormControlInput3" class="form-label ml">바코드</label>
+<input type="text" class="form-control" id="exampleFormControlInput3" name="scan_no" autofocus 
+onkeydown='scanned_no();'>
+<div id="addlist"></div>
+
+<script>
+  function scanned_no(e) {
+    let event = window.event || e;
+		let scan_no = document.getElementById('exampleFormControlInput3').value;
+		let user_id = "<?php echo $_st_user['user_id']; ?>";
+    if(event.keyCode == 13) {
+      $.ajax ({
+        type: 'post',
+        url: 's2-loan-scan-ajax.php',
+        data: {'scan_no':scan_no, 'user_id':user_id},
+        success: function(data) {
+          $("#addlist").append(data);
+          $("#exampleFormControlInput3").val('');
+        },
+        error: function(e) {
+        }
+      });
+    }
+  }
+</script>

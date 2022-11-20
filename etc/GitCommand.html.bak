@@ -4,7 +4,7 @@ c:\Project>git config --global user.email josee@gmail.com
 
 <!-- GIT 저장소 생성 -->
 c:\Project>md mydirectory
-c:\Project>git init
+c:\Project>mydirectory>git init
 GitHub에 저장소 만들기
 c:\Project\mydirectory>git remote add origin 저장소주소
 
@@ -25,5 +25,5 @@ c:\Project\mydirectory>git add a.js
 c:\Project\mydirectory>git commit
 c:\Project\mydirectory>git push origin master
 
-<!-- 서버 캐시메모리 삭제 -->
-sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
+<!-- 파일 만들기(Window) -->
+echo "111" > name.txt

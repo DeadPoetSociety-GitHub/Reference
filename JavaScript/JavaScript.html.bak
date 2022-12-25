@@ -3,6 +3,12 @@ window.addEventListener('DOMContentLoaded', function() {
 
 });
 
+<!-- DOM 가져오기, 클릭 이벤트-->
+let abc = document.getElementById("idName");
+abc.addEventListener("click". function() {
+
+});
+
 <!-- 일정시간 입력없으면 페이지 이동 -->
 <script>
   let time = new Date().getTime();
@@ -175,4 +181,72 @@ window.addEventListener('DOMContentLoaded', function() {
   backBtn.addEventListener('click', event => {
     history.back();
   });
+</script>
+
+<!-- 더 보기 -->
+
+<li id="moreContent">책 소개</li>
+<li style="font-weight: 400;"><button id="moreDescription">더 보기</button></li>
+<li style="font-weight: 400;"><button id="lessDescription">접기</button></li>
+
+<style>
+#moreDescription, #lessDescription {
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:#ffffff;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	cursor:pointer;
+	color:#666666;
+	font-size:12px;
+	padding:6px 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+#moreDescription, #lessDescription:hover {
+	background:linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color:#f6f6f6;
+}
+#moreDescription, #lessDescription:active {
+	position:relative;
+	top:1px;
+}
+.closed {
+	display: none !important;
+}
+.block {
+	display: block !important;
+}
+</style>
+
+<script>
+var content_txt = $("#moreContent").text();
+var content_txt_short = content_txt.substring(0,100)+"...";
+var btn_more = document.getElementById("moreDescription");
+var btn_less = document.getElementById("lessDescription");
+
+if(content_txt.length >= 100) {
+	$("#moreContent").html(content_txt_short);
+		btn_more.className += 'block';
+		btn_less.className += 'closed';
+} else {
+	$("#moreContent").html(content_txt);
+	btn_more.className += 'closed';
+	btn_less.className += 'closed';
+}
+btn_more.addEventListener("click", function(){
+	$("#moreContent").html(content_txt);
+	btn_more.classList.remove('block');
+	btn_more.className += 'closed';
+	btn_less.classList.remove('closed');
+	btn_less.className += 'block';
+});
+btn_less.addEventListener("click", function(){
+	$("#moreContent").html(content_txt_short);
+	btn_less.classList.remove('block');
+	btn_less.className += 'closed';
+	btn_more.classList.remove('closed');
+	btn_more.className += 'block';
+});
 </script>

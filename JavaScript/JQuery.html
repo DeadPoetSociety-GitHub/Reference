@@ -125,3 +125,21 @@ onkeydown='scanned_no();'>
     }
   }
 </script>
+
+<!-- 엔터 시 폼 입력 막기 -->
+<script>
+	document.addEventListener('keydown', function(event) {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+		};
+	}, true);
+</script>
+
+<!-- 엔터 시 폼 입력 막기(특정 input만) -->
+<script>
+	$('input[type="text"]').keydown(function() {
+		if (event.keyCode === 13) {
+			event.preventDefault();
+		};
+	});
+</script>
